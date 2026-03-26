@@ -90,6 +90,7 @@ cd texinfo-7.2
 make -j$(nproc)
 make install
 cd ..
+
 # 进行代码签名
 cd /opt/texinfo-7.2-ohos-arm64
 find . -type f \( -perm -0111 -o -name "*.so*" \) | while read FILE; do
