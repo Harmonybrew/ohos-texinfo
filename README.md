@@ -10,17 +10,7 @@
 
 **1\. 在鸿蒙 PC 中使用**
 
-在 HiShell 中用 curl 下载这个软件包，然后以“解压 + 配 PATH” 的方式使用。
-
-示例：
-```sh
-cd ~
-curl -fLO https://github.com/Harmonybrew/ohos-texinfo/releases/download/7.2/texinfo-7.2-ohos-arm64.tar.gz
-tar -zxf texinfo-7.2-ohos-arm64.tar.gz
-export PATH=~/texinfo-7.2-ohos-arm64/bin:$PATH
-
-# 现在可以使用 texinfo 命令了
-```
+不支持鸿蒙 PC。
 
 **2\. 在鸿蒙开发板中使用**
 
@@ -29,13 +19,21 @@ export PATH=~/texinfo-7.2-ohos-arm64/bin:$PATH
 示例：
 ```sh
 hdc file send texinfo-7.2-ohos-arm64.tar.gz /data
+hdc file send perl-5.42.0-ohos-arm64.tar.gz /data
 hdc shell
 
-cd /data
-tar -zxf texinfo-7.2-ohos-arm64.tar.gz
-export PATH=/data/texinfo-7.2-ohos-arm64/bin:$PATH
+# 需要先把根目录挂载为读写，才能创建 /opt 目录。
+mount -o remount,rw /
+mkdir -p /data/opt
+ln -s /data/opt /opt
 
-# 现在可以使用 texinfo 命令了
+cd /data
+tar -zxf texinfo-7.2-ohos-arm64.tar.gz -C /opt
+tar -zxf perl-5.42.0-ohos-arm64.tar.gz -C /opt
+export PATH=/opt/autoconf-2.72-ohos-arm64/bin:$PATH
+export PATH=/opt/perl-5.42.0-ohos-arm64/bin:$PATH
+
+# 现在可以使用 install-info 命令了
 ```
 
 **3\. 在 [鸿蒙容器](https://github.com/hqzing/dockerharmony) 中使用**
@@ -45,11 +43,14 @@ export PATH=/data/texinfo-7.2-ohos-arm64/bin:$PATH
 示例：
 ```sh
 cd /opt
-curl -fLO https://github.com/Harmonybrew/ohos-texinfo/releases/download/7.2/tar-7.2-ohos-arm64.tar.gz
+curl -fLO https://github.com/Harmonybrew/ohos-texinfo/releases/download/7.2/texinfo-7.2-ohos-arm64.tar.gz
+curl -fLO https://github.com/Harmonybrew/ohos-perl/releases/download/5.42.0/perl-5.42.0-ohos-arm64.tar.gz
 tar -zxf texinfo-7.2-ohos-arm64.tar.gz
+tar -zxf perl-5.42.0-ohos-arm64.tar.gz
 export PATH=/opt/texinfo-7.2-ohos-arm64/bin:$PATH
+export PATH=/opt/perl-5.42.0-ohos-arm64/bin:$PATH
 
-# 现在可以使用 texinfo 命令了
+# 现在可以使用 install-info 命令了
 ```
 
 ## 从源码构建
