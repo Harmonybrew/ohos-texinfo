@@ -30,7 +30,7 @@ ln -s /data/opt /opt
 cd /data
 tar -zxf texinfo-7.2-ohos-arm64.tar.gz -C /opt
 tar -zxf perl-5.42.0-ohos-arm64.tar.gz -C /opt
-export PATH=/opt/autoconf-2.72-ohos-arm64/bin:$PATH
+export PATH=/opt/texinfo-7.2-ohos-arm64/bin:$PATH
 export PATH=/opt/perl-5.42.0-ohos-arm64/bin:$PATH
 
 # 现在可以使用 install-info 命令了
