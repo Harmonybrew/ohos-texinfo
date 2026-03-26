@@ -17,7 +17,8 @@ grep 3.12
 gawk 5.3.2
 make 4.4.1
 tar 1.35
-gzip 1.14" >/tmp/tools.txt
+gzip 1.14
+perl 5.42.0" >/tmp/tools.txt
 while read -r name ver; do
     curl -fLO https://github.com/Harmonybrew/ohos-$name/releases/download/$ver/$name-$ver-ohos-arm64.tar.gz
 done </tmp/tools.txt
@@ -86,7 +87,7 @@ cd $WORKDIR
 curl -fLO https://ftp.gnu.org/gnu/texinfo/texinfo-7.2.tar.gz
 tar -zxf texinfo-7.2.tar.gz
 cd texinfo-7.2
-./configure --prefix=/opt/texinfo-7.2-ohos-arm64
+./configure --prefix=/opt/texinfo-7.2-ohos-arm64 --disable-shared
 make -j$(nproc)
 make install
 cd ..
